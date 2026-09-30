@@ -1,0 +1,20 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+remappings = [
+    "@openzeppelin/=lib/openzeppelin-contracts/",
+    "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+    "forge-std/=lib/forge-std/src/",
+    "halmos-cheatcodes/=lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/",
+    "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+]
+# The remappings are part of the metadata hash in the bytecode, so they set the deployed CREATE2
+# address. Some point at libraries this repo doesn't use (lib/forge-std isn't here); they stay so
+# the bytecode matches. Auto-detection is off, because its result depends on which nested
+# OpenZeppelin submodules are checked out.
+auto_detect_remappings = false
